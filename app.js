@@ -20,10 +20,10 @@ app.use(fileUpload());
 
 // Database Connection
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "itachi@2004",
-  database: "foodorderingwesitedb",
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "itachi@2004",
+  database: process.env.DB_NAME || "foodorderingwesitedb",
 });
 connection.connect((err) => {
   if (err) {
@@ -34,7 +34,7 @@ connection.connect((err) => {
   });
 
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
